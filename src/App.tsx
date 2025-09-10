@@ -1,4 +1,6 @@
-import {AppBar, Toolbar, Typography} from "@mui/material";
+import {AppBar, Paper, Toolbar, Typography} from "@mui/material";
+import TodoList from "./components/TodoList.tsx";
+import NavigationBar from "./components/NavigationBar.tsx";
 
 const App = () => {
     return (<>
@@ -9,6 +11,10 @@ const App = () => {
                 </Typography>
             </Toolbar>
         </AppBar>
+        <TodoList/>
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+            <NavigationBar/>
+        </Paper>
     </>);
 }
 
