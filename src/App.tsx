@@ -1,16 +1,15 @@
-import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
+import {AppBar, Toolbar, Typography} from "@mui/material";
 
 const App = () => {
-    return (<Box sx={{ width: '100%', height: '100vh', margin: 0 }}>
-        <AppBar position="static">
+    return (<>
+        <AppBar position={"sticky"}>
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    News
+                <Typography variant="h5" component="div" sx={{flexGrow: 1}}>
+                    todo
                 </Typography>
-                <Button color="inherit">Login</Button>
             </Toolbar>
         </AppBar>
-    </Box>);
+    </>);
 }
 
 export default App;
