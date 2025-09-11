@@ -1,23 +1,27 @@
-import React from 'react';
 import {BottomNavigation, BottomNavigationAction, Box} from "@mui/material";
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import AddIcon from '@mui/icons-material/Add';
+import SettingsIcon from '@mui/icons-material/Settings';
+import {AppViews} from "../common/enums.ts";
 
-const NavigationBar = () => {
-    const [value, setValue] = React.useState(0);
+interface INavigationBarProps {
+    view: AppViews;
+    setView: (view: AppViews) => void;
+}
+
+const NavigationBar = ({view, setView}: INavigationBarProps) => {
     return (
         <Box>
             <BottomNavigation
                 showLabels
-                value={value}
+                value={view}
                 onChange={(_event, newValue) => {
-                    setValue(newValue);
+                    setView(newValue);
                 }}
             >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                <BottomNavigationAction label="List" icon={<ChecklistIcon />} />
+                <BottomNavigationAction label="Create" icon={<AddIcon />} />
+                <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
             </BottomNavigation>
         </Box>
     );
