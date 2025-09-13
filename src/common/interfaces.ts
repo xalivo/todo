@@ -4,5 +4,6 @@ export interface ITodoListItem {
     description?: string;
     link?: string;
     isDone: boolean;
+    dateDueTo: Date;
     createdAt: Date;
 }
