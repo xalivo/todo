@@ -7,7 +7,7 @@ const CreatePage = () => {
     const {addTodoItem, todoItems} = useTodoStore();
 
     const onSubmit = (data: FieldValues) => {
-        const newId = Math.max(...todoItems.map(x => x.id)) + 1;
+        const newId = todoItems.length === 0 ? 1 : Math.max(...todoItems.map(x => x.id)) + 1;
         addTodoItem({
             id: newId,
             title: data.title,
