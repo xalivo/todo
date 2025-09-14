@@ -1,11 +1,22 @@
 import {Button, TextField} from "@mui/material";
 import {type FieldValues, useForm} from "react-hook-form";
+import useTodoStore from "../store/TodoStore.ts";
 
 const CreatePage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const {addTodoItem, todoItems} = useTodoStore();
 
     const onSubmit = (data: FieldValues) => {
-        console.log(data);
+        const newId = Math.max(...todoItems.map(x => x.id)) + 1;
+        addTodoItem({
+            id: newId,
+            title: data.title,
+            description: data.description,
+            link: data.link,
+            isDone: false,
+            dateDueTo: data.dateDueTo,
+            createdAt: new Date(),
+        });
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)} style={{
@@ -34,7 +45,7 @@ const CreatePage = () => {
             <TextField label={"link"}
                        placeholder={"Link a website to this event (optional)"}
                        fullWidth
-                       {...register("link", {pattern: /https?:\/\//})}
+                       {...register("link", {pattern: {value: /https?:\/\//, message: "Links must start with http / https"}})}
                        error={!!errors.link}
                        helperText={errors.link && <span>{"" + errors.link?.message}</span>}/>
             <TextField label={"due to"}
