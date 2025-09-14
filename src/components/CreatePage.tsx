@@ -1,4 +1,4 @@
-import {Button, TextField} from "@mui/material";
+import {Button, TextField, Typography} from "@mui/material";
 import {type FieldValues, useForm} from "react-hook-form";
 import useTodoStore from "../store/TodoStore.ts";
 
@@ -21,12 +21,14 @@ const CreatePage = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} style={{
             padding: 30,
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             gap: 30
         }}>
+            <Typography variant={"h4"}>Add item to do</Typography>
             <TextField label={"title"}
                        placeholder={"Enter title..."}
                        variant={"outlined"}
@@ -55,7 +57,7 @@ const CreatePage = () => {
                        {...register("dateDueTo")}
                        error={!!errors.dateDueTo}
                        helperText={errors.dateDueTo && <span>{"" + errors.dateDueTo?.message}</span>}/>
-            <Button variant={"outlined"} type={"submit"} fullWidth>Submit</Button>
+            <Button variant={"contained"} type={"submit"} color={"primary"} fullWidth>Submit</Button>
         </form>
     );
 };

@@ -19,7 +19,7 @@ const TodoList = () => {
     }
 
     return (
-        <List sx={{width: '100%', maxWidth: 450}}>
+        <List sx={{width: '100%', maxWidth: 450, marginInlineEnd: 1}}>
             {todoItems.map(x => <TodoListItem key={x.id}
                                               item={x}
                                               handleOnToggleIsDone={handleOnToggleListItemIsDone}
