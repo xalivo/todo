@@ -1,20 +1,32 @@
 import type {ITodoListItem} from "../common/interfaces.ts";
-import {IconButton, ListItem, ListItemButton, ListItemText} from "@mui/material";
+import {Checkbox, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface ITodoListItemProps {
     item: ITodoListItem;
+    handleOnDelete: (id: number) => void;
+    handleOnToggleIsDone: (id: number) => void;
 }
 
-const TodoListItem = ({item}: ITodoListItemProps) => {
+const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone}: ITodoListItemProps) => {
     return (
         <ListItem secondaryAction={
-            <IconButton edge={"end"}>
+            <IconButton onClick={() => handleOnDelete(item.id)} edge={"end"}>
                 <DeleteIcon/>
             </IconButton>
         }>
-            <ListItemButton>
-                <ListItemText primary={item.title} secondary={item.description}/>
+            <ListItemButton onClick={() => handleOnToggleIsDone(item.id)}>
+                <ListItemIcon>
+                    <Checkbox
+                        edge={"start"}
+                        checked={item.isDone}
+                        tabIndex={-1}
+                        disableRipple
+                    />
+                </ListItemIcon>
+                <ListItemText primary={item.title}
+                              secondary={item.description}
+                              style={{textDecoration: item.isDone ? "line-through" : "none"}}/>
             </ListItemButton>
         </ListItem>
     );

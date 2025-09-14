@@ -29,7 +29,7 @@ const App = () => {
                 </Typography>
             </Toolbar>
         </AppBar>
-        <div>
+        <div style={{display: "flex", justifyContent: "center"}}>
             {render()}
         </div>
         <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
