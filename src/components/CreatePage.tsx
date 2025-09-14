@@ -22,6 +22,7 @@ const CreatePage = () => {
         <form onSubmit={handleSubmit(onSubmit)} style={{
             padding: 30,
             width: "100%",
+            maxWidth: 500,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",

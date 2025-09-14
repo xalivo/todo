@@ -19,7 +19,7 @@ const SettingsPage = () => {
     }
 
     return (
-        <div style={{width: '100%', display: "flex", flexDirection: "column", gap: 10}}>
+        <div style={{width: '100%', maxWidth: 500, display: "flex", flexDirection: "column", gap: 10}}>
             <Card style={{padding: 10}}>
                 <CardContent>
                     <Typography variant={"h5"}>todo</Typography>
