@@ -18,6 +18,7 @@ const NavigationBar = ({view, setView}: INavigationBarProps) => {
                 onChange={(_event, newValue) => {
                     setView(newValue);
                 }}
+                style={{paddingBottom: 30}}
             >
                 <BottomNavigationAction label="List" icon={<ChecklistIcon />} />
                 <BottomNavigationAction label="Create" icon={<AddIcon />} />

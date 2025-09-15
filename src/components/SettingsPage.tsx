@@ -16,6 +16,7 @@ const SettingsPage = () => {
     const removeAllData = () => {
         setTodoItems([]);
         localStorage.removeItem("todoList");
+        sendMessage("Removed all data.");
     }
 
     return (
