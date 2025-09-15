@@ -1,14 +1,15 @@
 import {AppBar, Paper, Toolbar, Typography} from "@mui/material";
 import NavigationBar from "./components/NavigationBar.tsx";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {AppViews} from "./common/enums.ts";
 import TodoList from "./components/TodoList.tsx";
 import CreatePage from "./components/CreatePage.tsx";
 import SettingsPage from "./components/SettingsPage.tsx";
 import useTodoStore from "./store/TodoStore.ts";
+import useAppViewStore from "./store/AppViewStore.ts";
 
 const App = () => {
-    const [view, setView] = useState<AppViews>(AppViews.Home);
+    const {view} = useAppViewStore();
     const {todoItems, setTodoItems} = useTodoStore();
 
     const render = () => {
@@ -58,7 +59,7 @@ const App = () => {
                 {render()}
             </div>
             <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
-                <NavigationBar view={view} setView={setView}/>
+                <NavigationBar/>
             </Paper>
         </>);
 }

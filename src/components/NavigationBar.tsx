@@ -2,14 +2,10 @@ import {BottomNavigation, BottomNavigationAction, Box} from "@mui/material";
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import AddIcon from '@mui/icons-material/Add';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {AppViews} from "../common/enums.ts";
+import useAppViewStore from "../store/AppViewStore.ts";
 
-interface INavigationBarProps {
-    view: AppViews;
-    setView: (view: AppViews) => void;
-}
-
-const NavigationBar = ({view, setView}: INavigationBarProps) => {
+const NavigationBar = () => {
+    const {view, setView} = useAppViewStore();
     return (
         <Box>
             <BottomNavigation
