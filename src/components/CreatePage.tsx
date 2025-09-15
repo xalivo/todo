@@ -1,10 +1,13 @@
 import {Button, TextField, Typography} from "@mui/material";
 import {type FieldValues, useForm} from "react-hook-form";
 import useTodoStore from "../store/TodoStore.ts";
+import useAppViewStore from "../store/AppViewStore.ts";
+import {AppViews} from "../common/enums.ts";
 
 const CreatePage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const {addTodoItem, todoItems} = useTodoStore();
+    const {setView} = useAppViewStore();
 
     const onSubmit = (data: FieldValues) => {
         const newId = todoItems.length === 0 ? 1 : Math.max(...todoItems.map(x => x.id)) + 1;
@@ -17,6 +20,7 @@ const CreatePage = () => {
             dateDueTo: data.dateDueTo,
             createdAt: new Date(),
         });
+        setView(AppViews.Home);
     }
     return (
         <form onSubmit={handleSubmit(onSubmit)} style={{
