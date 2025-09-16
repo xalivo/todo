@@ -7,10 +7,17 @@ interface ITodoStore {
     addTodoItem: (item: ITodoListItem) => void;
 }
 
-const useTodoStore = create<ITodoStore>((set) => ({
+const useTodoStore = create<ITodoStore>((set, get) => ({
     todoItems: [],
-    setTodoItems: (items: ITodoListItem[]) => set({todoItems: items}),
-    addTodoItem: (item: ITodoListItem) => set((state) => ({todoItems: [...state.todoItems, item]})),
+    setTodoItems: (items: ITodoListItem[]) => {
+        set({todoItems: items});
+        localStorage.setItem("todoList", JSON.stringify(items));
+    },
+    addTodoItem: (item: ITodoListItem) => {
+        const newItems = [...get().todoItems, item];
+        set({todoItems: newItems});
+        localStorage.setItem("todoList", JSON.stringify(newItems));
+    },
 }));
 
 export default useTodoStore;

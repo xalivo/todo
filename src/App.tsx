@@ -1,4 +1,4 @@
-import {AppBar, Paper, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Toolbar, Typography} from "@mui/material";
 import NavigationBar from "./components/NavigationBar.tsx";
 import {useEffect} from "react";
 import {AppViews} from "./common/enums.ts";
@@ -10,7 +10,7 @@ import useAppViewStore from "./store/AppViewStore.ts";
 
 const App = () => {
     const {view} = useAppViewStore();
-    const {todoItems, setTodoItems} = useTodoStore();
+    const {setTodoItems} = useTodoStore();
 
     const render = () => {
         switch (view) {
@@ -23,9 +23,9 @@ const App = () => {
         }
     }
 
-    const handleOnCloseWindow = () => {
+    /*const handleOnCloseWindow = () => {
         localStorage.setItem("todoList", JSON.stringify(todoItems));
-    }
+    }*/
 
     const handleOnOpenWindow = () => {
         const storedItems = localStorage.getItem("todoList");
@@ -35,15 +35,17 @@ const App = () => {
     }
 
     useEffect(() => {
+        console.log("HandleOnOpenWindow")
         handleOnOpenWindow();
     }, []);
 
-    useEffect(() => {
+    // does not work on mobile --> see mdn documentation
+    /*useEffect(() => {
         window.addEventListener("pagehide", handleOnCloseWindow);
         return () => {
             window.removeEventListener("pagehide", handleOnCloseWindow);
         };
-    }, [todoItems]);
+    }, [todoItems]);*/
 
 
     return (
@@ -58,9 +60,9 @@ const App = () => {
             <div style={{display: "flex", justifyContent: "center"}}>
                 {render()}
             </div>
-            <Paper sx={{position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={3}>
+            <Box style={{ position: 'fixed', bottom: 0, left: 0, right: 0, backgroundColor: "#121212"}}>
                 <NavigationBar/>
-            </Paper>
+            </Box>
         </>);
 }
 
