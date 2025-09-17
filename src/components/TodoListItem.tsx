@@ -25,7 +25,7 @@ const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone}: ITodoListIte
                     />
                 </ListItemIcon>
                 <ListItemText primary={item.title}
-                              secondary={item.description?.substring(0, 20)}
+                              secondary={item.description && item.description?.length > 20 ? item.description.substring(0, 20) + "..." : item.description}
                               style={{textDecoration: item.isDone ? "line-through" : "none", color: item.isDone ? "#757678" : "inherit"}}/>
             </ListItemButton>
         </ListItem>

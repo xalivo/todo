@@ -23,10 +23,6 @@ const App = () => {
         }
     }
 
-    /*const handleOnCloseWindow = () => {
-        localStorage.setItem("todoList", JSON.stringify(todoItems));
-    }*/
-
     const handleOnOpenWindow = () => {
         const storedItems = localStorage.getItem("todoList");
         if (storedItems) {
@@ -35,18 +31,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        console.log("HandleOnOpenWindow")
         handleOnOpenWindow();
     }, []);
-
-    // does not work on mobile --> see mdn documentation
-    /*useEffect(() => {
-        window.addEventListener("pagehide", handleOnCloseWindow);
-        return () => {
-            window.removeEventListener("pagehide", handleOnCloseWindow);
-        };
-    }, [todoItems]);*/
-
 
     return (
         <>
