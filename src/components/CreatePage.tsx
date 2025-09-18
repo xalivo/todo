@@ -22,6 +22,7 @@ const CreatePage = () => {
         });
         setView(AppViews.Home);
     }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)} style={{
             padding: 30,
