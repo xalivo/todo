@@ -10,7 +10,7 @@ interface ITodoListItemProps {
 
 const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone}: ITodoListItemProps) => {
     return (
-        <ListItem style={{backgroundColor: item.color}} secondaryAction={
+        <ListItem style={{borderInlineStart: "solid", borderColor: item.color, borderWidth: 10}} secondaryAction={
             <IconButton onClick={() => handleOnDelete(item.id)} edge={"end"}>
                 <DeleteIcon/>
             </IconButton>

@@ -65,6 +65,7 @@ const CreatePage = () => {
             <TextField label={"color"}
                        type={"color"}
                        fullWidth
+                       defaultValue={"#121212"}
                        {...register("color")}/>
             <TextField label={"due to"}
                        type={"datetime-local"}
