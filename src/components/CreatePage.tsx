@@ -18,6 +18,7 @@ const CreatePage = () => {
             link: data.link,
             isDone: false,
             dateDueTo: data.dateDueTo,
+            color: data.color,
             createdAt: new Date(),
         });
         setView(AppViews.Home);
@@ -53,9 +54,18 @@ const CreatePage = () => {
             <TextField label={"link"}
                        placeholder={"Link a website to this event (optional)"}
                        fullWidth
-                       {...register("link", {pattern: {value: /https?:\/\//, message: "Links must start with http / https"}})}
+                       {...register("link", {
+                           pattern: {
+                               value: /https?:\/\//,
+                               message: "Links must start with http / https"
+                           }
+                       })}
                        error={!!errors.link}
                        helperText={errors.link && <span>{"" + errors.link?.message}</span>}/>
+            <TextField label={"color"}
+                       type={"color"}
+                       fullWidth
+                       {...register("color")}/>
             <TextField label={"due to"}
                        type={"datetime-local"}
                        slotProps={{inputLabel: {shrink: true}}}
