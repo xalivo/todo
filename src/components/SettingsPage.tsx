@@ -2,9 +2,13 @@ import {Button, Card, CardActions, CardContent, Divider, Snackbar, Typography} f
 import {APP_URL, APP_VERSION, PROJECT_GITHUB_URL} from "../common/constants.ts";
 import {useState} from "react";
 import useTodoStore from "../store/TodoStore.ts";
+import ConfirmationDialog from "./ConfirmationDialog.tsx";
+import useMessageStore from "../store/MessageStore.ts";
 
 const SettingsPage = () => {
     const {setTodoItems} = useTodoStore();
+    const {setIsOpen} = useMessageStore();
+    const [confirmFunction, setConfirmFunction] = useState<Function>(() => {});
     const [isSnackbarOpened, setIsSnackbarOpened] = useState<boolean>(false);
     const [msg, setMsg] = useState<string>();
 
@@ -17,6 +21,7 @@ const SettingsPage = () => {
         setTodoItems([]);
         localStorage.removeItem("todoList");
         sendMessage("Removed all data.");
+        setIsOpen(false);
     }
 
     return (
@@ -42,7 +47,7 @@ const SettingsPage = () => {
                 <Typography variant={"body2"}>If you wish to permanently remove all data linked to this application,
                     click the
                     button below.</Typography>
-                <Button onClick={removeAllData} variant={"outlined"} color={"error"}>Delete all data</Button>
+                <Button onClick={() => {setConfirmFunction(() => removeAllData); setIsOpen(true)}} variant={"outlined"} color={"error"}>Delete all data</Button>
                 <Divider variant={"middle"}/>
             </Card>
 
@@ -50,6 +55,7 @@ const SettingsPage = () => {
                       autoHideDuration={1000}
                       onClose={() => setIsSnackbarOpened(false)}
                       message={msg}/>
+            <ConfirmationDialog title={"Are you sure?"} text={"Data cannot be restored."} onConfirm={() => confirmFunction()}/>
         </div>
     );
 };
