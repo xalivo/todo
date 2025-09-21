@@ -6,9 +6,9 @@ interface IMessageStore {
 }
 
 
-const messageStore = create<IMessageStore>((set) => ({
+const useMessageStore = create<IMessageStore>((set) => ({
     isOpen: false,
     setIsOpen: (open: boolean) => set({isOpen: open})
 }));
 
-export default messageStore;
+export default useMessageStore;

@@ -1,26 +1,32 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
-import {useState} from "react";
+import useMessageStore from "../store/MessageStore.ts";
 
 interface IConfirmationDialogProps {
     title: string;
     text?: string;
     onConfirm: () => void;
-    onCancel: () => void;
+    onCancel?: () => void;
 }
 
 const ConfirmationDialog = ({title, text, onConfirm, onCancel}: IConfirmationDialogProps) => {
-    const [open, setOpen] = useState(false);
+    const {isOpen, setIsOpen} = useMessageStore();
+
+    const onPressCancel = () => {
+        if (onCancel) onCancel();
+        setIsOpen(false);
+    }
+
     return (
         <Dialog
-            open={open}
+            open={isOpen}
             keepMounted
-            onClose={() => setOpen(false)}>
+            onClose={() => setIsOpen(false)}>
             <DialogTitle>{title}</DialogTitle>
             <DialogContent>
                 <DialogContentText>{text}</DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onCancel}>Cancel</Button>
+                <Button onClick={onPressCancel}>Cancel</Button>
                 <Button onClick={onConfirm}>Confirm</Button>
             </DialogActions>
         </Dialog>
