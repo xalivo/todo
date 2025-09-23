@@ -1,15 +1,18 @@
 import type {ITodoListItem} from "../common/interfaces.ts";
 import {Checkbox, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import TodoItemDetails from "./TodoItemDetails.tsx";
+import {useState} from "react";
 
 interface ITodoListItemProps {
     item: ITodoListItem;
     handleOnDelete: (id: number) => void;
     handleOnToggleIsDone: (id: number) => void;
-    setIsDetailsOpen: (open: boolean) => void;
 }
 
-const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone, setIsDetailsOpen}: ITodoListItemProps) => {
+const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone}: ITodoListItemProps) => {
+    const [isDetailsOpen, setIsDetailsOpen] = useState<boolean>(false);
+
     return (
         <ListItem style={{borderInlineStart: "solid", borderColor: item.color, borderWidth: 10}} secondaryAction={
             <IconButton onClick={() => handleOnDelete(item.id)} edge={"end"}>
@@ -32,6 +35,7 @@ const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone, setIsDetailsO
                                   color: item.isDone ? "#757678" : "inherit"
                               }}/>
             </ListItemButton>
+            <TodoItemDetails isDetailsOpen={isDetailsOpen} setIsDetailsOpen={setIsDetailsOpen}/>
         </ListItem>
     );
 };
