@@ -35,7 +35,7 @@ const TodoListItem = ({item, handleOnDelete, handleOnToggleIsDone}: ITodoListIte
                                   color: item.isDone ? "#757678" : "inherit"
                               }}/>
             </ListItemButton>
-            <TodoItemDetails isDetailsOpen={isDetailsOpen} setIsDetailsOpen={setIsDetailsOpen}/>
+            <TodoItemDetails item={item} isDetailsOpen={isDetailsOpen} setIsDetailsOpen={setIsDetailsOpen}/>
         </ListItem>
     );
 };
