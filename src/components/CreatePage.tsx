@@ -34,7 +34,7 @@ const CreatePage = () => {
             justifyContent: "center",
             alignItems: "center",
             gap: 20,
-            marginBottom: 20
+            marginBottom: 100
         }}>
             <Typography variant={"h4"}>Add item to do</Typography>
             <TextField label={"title"}
