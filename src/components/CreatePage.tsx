@@ -33,7 +33,8 @@ const CreatePage = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            gap: 30
+            gap: 20,
+            marginBottom: 20
         }}>
             <Typography variant={"h4"}>Add item to do</Typography>
             <TextField label={"title"}
@@ -47,6 +48,7 @@ const CreatePage = () => {
                        placeholder={"description (optional)"}
                        multiline
                        rows={5}
+                       slotProps={{inputLabel: {shrink: true}}}
                        fullWidth
                        {...register("description", {maxLength: {value: 400, message: "description is too long."}})}
                        error={!!errors.description}

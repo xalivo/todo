@@ -20,7 +20,7 @@ const TodoItemDetails = ({item, isDetailsOpen, setIsDetailsOpen}: ITodoItemDetai
             onClose={handleClose}>
             <DialogTitle style={{backgroundColor: item.color}}>{item.title}</DialogTitle>
             <DialogContent>
-                <h4>link: {item.link ? <a href={item.link}>{item.link}</a>: "No link available."}</h4>
+                <h4>link: {item.link ? <a style={{color: "#4891ff"}} href={item.link}>{item.link}</a>: "No link available."}</h4>
                 <h4>description</h4>
                 <DialogContentText>{item.description ? item.description : "No description available."}</DialogContentText>
                 <h4>due to</h4>
