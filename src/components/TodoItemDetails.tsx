@@ -1,4 +1,4 @@
-import {Modal} from "@mui/material";
+import {Dialog, DialogTitle} from "@mui/material";
 
 interface ITodoItemDetailsProps {
     isDetailsOpen: boolean;
@@ -10,12 +10,13 @@ const TodoItemDetails = ({isDetailsOpen, setIsDetailsOpen}: ITodoItemDetailsProp
     const handleClose = () => {
         setIsDetailsOpen(false);
     }
+
     return (
-        <Modal
+        <Dialog
             open={isDetailsOpen}
             onClose={handleClose}>
-            <div>Hello</div>
-        </Modal>
+            <DialogTitle>Hello</DialogTitle>
+        </Dialog>
     );
 };
 

@@ -1,9 +1,12 @@
 import {List} from "@mui/material";
 import useTodoStore from "../store/TodoStore.ts";
 import TodoListItem from "./TodoListItem.tsx";
+import TodoItemDetails from "./TodoItemDetails.tsx";
+import {useState} from "react";
 
 const TodoList = () => {
     const {todoItems, setTodoItems} = useTodoStore();
+    const [isDetailsOpen, setIsDetailsOpen] = useState<boolean>(false);
 
     const handleOnToggleListItemIsDone = (id: number) => {
         setTodoItems(todoItems.map((x) => {
@@ -23,7 +26,9 @@ const TodoList = () => {
             {todoItems.map(x => <TodoListItem key={x.id}
                                               item={x}
                                               handleOnToggleIsDone={handleOnToggleListItemIsDone}
-                                              handleOnDelete={handleOnDeleteListItem}/>)}
+                                              handleOnDelete={handleOnDeleteListItem}
+                                              setIsDetailsOpen={setIsDetailsOpen}/>)}
+            <TodoItemDetails isDetailsOpen={isDetailsOpen} setIsDetailsOpen={setIsDetailsOpen}/>
         </List>
     );
 };
